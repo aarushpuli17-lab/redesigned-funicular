@@ -6,50 +6,67 @@
     <title>Rose Day Animation</title>
     <style>
         body {
+            margin: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #ffefef;
             overflow: hidden;
-            margin: 0;
+            background: linear-gradient(to bottom, #ff99cc, #ffccff);
+            position: relative;
         }
         .rose {
-            width: 100px;
-            height: 100px;
-            background-image: url('https://example.com/rose.png');
-            background-size: cover;
             position: absolute;
-            animation: float 4s ease-in-out infinite;
+            width: 50px;
+            height: 50px;
+            background: url('https://path-to-your-rose-image.png') no-repeat;
+            background-size: contain;
+            animation: fall 5s infinite;
+        }
+        @keyframes fall {
+            0% { top: -10%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('https://path-to-your-heart-image.png') no-repeat;
+            background-size: contain;
+            animation: float 5s infinite;
         }
         @keyframes float {
             0% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0); }
         }
-        .emoji {
-            font-size: 50px;
-            position: absolute;
-            animation: bounce 2s ease-in-out infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
         .message {
-            font-size: 2em;
-            color: #ff007f;
             position: absolute;
-            bottom: 20%;
+            bottom: 50px;
+            color: white;
+            font-size: 24px;
             text-align: center;
+            font-family: Arial, sans-serif;
         }
     </style>
 </head>
 <body>
     <div class="rose"></div>
-    <div class="emoji" style="top: 20%; left: 10%;">💖</div>
-    <div class="emoji" style="top: 30%; right: 15%;">💋</div>
-    <div class="emoji" style="top: 40%; left: 30%;">🌹</div>
-    <div class="message">Happy Rose Day! Sending you all my love! 🌹💖💋</div>
+    <div class="heart"></div>
+    <div class="message">
+        happppiest roseee dayyy baby i would have come and given you a actual rose but i know that is not possible till then i hope this okay sorry :( and waiting for us to meeettt sooooonnnnn i loovvvvvvee youuu the mossttt my babby and many more rose days to celebrate lovvee youu my worldddddd
+    </div>
+    <script>
+        function createFallingRoses() {
+            for (let i = 0; i < 10; i++) {
+                const rose = document.createElement('div');
+                rose.classList.add('rose');
+                rose.style.left = Math.random() * window.innerWidth + 'px';
+                document.body.appendChild(rose);
+                setTimeout(() => { rose.remove(); }, 5000);
+            }
+        }
+        setInterval(createFallingRoses, 1000);
+    </script>
 </body>
 </html>
